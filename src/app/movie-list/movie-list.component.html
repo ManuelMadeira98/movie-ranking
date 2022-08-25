@@ -1,0 +1,57 @@
+<div class="backdrop" (click)="closeModal()" [ngClass]="{'fade-in': isModalActive(), 'fade-out': !isModalActive()}"></div>
+
+<div class="content-container">
+    <div class="app-title">Movie ranking</div>
+
+    <div class="filters-container">
+        <div class="filter top-revenue" (click)="filterByTopRevenue()" [class.active]="isTopRevenueFilterActive">
+            Top 10 Revenue
+        </div>
+
+        <div class="filter top-revenue-year" (click)="filterByYearlyTopRevenue()" [class.active]="isTopRevenueByYearFilterActive">
+            Top 10 Revenue year
+        </div>
+
+        <img
+            class="reset"
+            src="{{ resetIconUrl }}"
+            alt="Reset Filters"
+            [ngClass]="{'fade-in': isOneFilterActive(), 'fade-out': !isOneFilterActive()}"
+            (click)="resetFilters()"
+        >
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th class="header ranking">RANKING</th>
+                    <th class="header title">TITLE</th>
+                    <th class="header year">YEAR</th>
+                    <th class="header revenue">REVENUE</th>
+                    <th class="header detail"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <div class="header-divider"></div>
+
+                <tr *ngFor='let movie of movieList; trackBy:trackByMovieId' (click)="selectMovie(movie.id)">
+                    <td class="movie-entry ranking">{{ movie.rank }}</td>
+                    <td class="movie-entry">{{ movie.title }}</td>
+                    <td class="movie-entry">{{ movie.year }}</td>
+                    <td class="movie-entry">{{ movie.revenue | revenueFormat }}</td>
+                    <td class="movie-entry detail"><img src="{{ openIconUrl }}" alt="Open Movie"></td>
+                </tr>
+                <div [hidden]="!isSentinelActive()" style="margin-top: 5px;" #sentinel>&nbsp;</div>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modals -->
+<app-movie-detail  [isDetailDisplayed]="isDetailDisplayed" [movie]="(selectedMovie$ | async)" (onDetailClose)="onMovieDetailClose()">
+</app-movie-detail>
+
+<app-year-picker [isYearPickerDisplayed]="isYearPickerDisplayed"(onYearChosen)="onFilterByYearTrigger($event)">
+</app-year-picker>

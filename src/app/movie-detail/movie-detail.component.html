@@ -1,0 +1,64 @@
+<div class="modal" [ngClass]="{'fade-in': isDetailDisplayed, 'fade-out': !isDetailDisplayed}">
+
+    <div class="movie">
+        <div class="movie-title">{{ movie?.title }}</div>
+        <div class="movie-title-highlight"></div>
+        <div class="close" (click)="onDetailClose.emit()">
+            <img src="{{ closeIconUrl }}" alt="Close Detail">
+            <span>CLOSE</span>
+        </div>
+
+        <div class="movie-subtitle year">
+            <span class="subtitle">Year</span>
+            <span class="value">{{ movie?.year }}</span>
+        </div>
+
+        <div class="movie-subtitle genre">
+            <span class="subtitle">Genre</span>
+            <span class="value">{{ movie?.genre }}</span>
+        </div>
+
+        <div class="movie-subtitle description">
+            <span class="subtitle">Description</span>
+            <p class="value" [style.line-height.px]="24">{{ movie?.description }}</p>
+        </div>
+
+        <div class="movie-subtitle people">
+            <div class="movie-subtitle director" [style.width.%]="25">
+                <span class="subtitle">Director</span>
+                <span class="value secondary">{{ movie?.director }}</span>
+            </div>
+
+            <div class="movie-subtitle actors" [style.width.%]="75">
+                <span class="subtitle">Actors</span>
+                <span class="value secondary">{{ movie?.actors | removeCommas }}</span>
+            </div>
+        </div>
+
+        <div class="movie-subtitle runtime">
+            <span class="subtitle">Runtime</span>
+            <span class="value">{{ movie?.runtime }} mins</span>
+        </div>
+
+        <div class="movie-subtitle rating">
+            <span class="subtitle">Rating</span>
+            <span class="value">{{ movie?.rating }}</span>
+        </div>
+
+        <div class="movie-subtitle votes">
+            <span class="subtitle">Votes</span>
+            <span class="value">{{ movie?.votes }}</span>
+        </div>
+
+        <div class="movie-subtitle revenue">
+            <span class="subtitle">Revenue</span>
+            <span class="value">{{ movie?.revenue | revenueFormat }}</span>
+        </div>
+
+        <div class="movie-subtitle metascore">
+            <span class="subtitle">Metascore</span>
+            <span class="value">{{ movie?.metascore }}</span>
+        </div>
+    </div>
+
+</div>

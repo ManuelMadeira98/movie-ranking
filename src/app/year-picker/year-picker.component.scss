@@ -1,0 +1,59 @@
+@import '../../variables';
+
+.modal {
+    position: absolute;
+    width: 20%;
+    background-color: #ffffff;
+    box-shadow: $modal-box-shadow;
+    z-index: 20;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .year-list-container {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .header {
+            font-size: 12px;
+            font-weight: $font-weight-regular;
+            color: #78849EB9;
+            margin-top: 16px;
+            margin-bottom: 10px;
+        }
+
+        .year {
+            font-size: 14px;
+            font-weight: $font-weight-medium;
+            color: #536B7A;
+            margin-top: 8px;
+
+            &:last-child {
+                margin-bottom: 13px;
+            }
+
+            &:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.fade-in {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.3s;
+}
+
+.fade-out {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 0.3s;
+    pointer-events: none;
+}

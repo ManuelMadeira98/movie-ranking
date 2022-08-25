@@ -1,0 +1,6 @@
+<div class="modal" [ngClass]="{'fade-in': isYearPickerDisplayed, 'fade-out': !isYearPickerDisplayed}">
+    <div class="year-list-container">
+        <div class="header">Select a year</div>
+        <div class="year" *ngFor="let year of years" (click)="selectYear(year)">{{ year }}</div>
+    </div>
+</div>
